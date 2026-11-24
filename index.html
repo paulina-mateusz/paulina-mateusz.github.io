@@ -107,15 +107,32 @@
     font-family:var(--serif);font-weight:300;font-style:italic;
     font-size:clamp(2.2rem,7vw,2.9rem);line-height:1.1;margin:12px 0 26px;
   }
-  .lead{font-family:var(--serif);font-size:1.3rem;line-height:1.6;color:#4a403a;max-width:500px;margin:0 auto}
+  .lead{text-wrap:pretty;font-family:var(--serif);font-size:1.3rem;line-height:1.6;color:#4a403a;max-width:500px;margin:0 auto}
 
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity 1s ease, transform 1s cubic-bezier(.2,.7,.2,1)}
-  .reveal.in{opacity:1;transform:none}
+  /* pojawianie się – elementy po kolei, w obie strony przewijania */
+  .r{
+    opacity:0;transform:translateY(28px);
+    transition:opacity .9s ease, transform 1.2s cubic-bezier(.16,1,.3,1), filter 1s ease;
+    transition-delay:0s;
+  }
+  .r.soft{filter:blur(5px)}
+  .reveal.from-top .r{transform:translateY(-28px)}
+  .reveal.in .r{opacity:1;transform:none;transition-delay:calc(var(--i,0) * 120ms)}
+  .reveal.in .r.soft{filter:blur(0)}
+  .reveal.in .t-item.blur.r{opacity:.75}
+  .t-heart.r{transform:scale(.3);
+    transition:top 1.2s ease, opacity .8s ease, transform .9s cubic-bezier(.34,1.56,.64,1)}
+  .reveal.from-top .t-heart.r{transform:scale(.3)}
+  .reveal.in .t-heart.r{transform:none}
 
   /* zaproszenie */
   .invite-time{
-    display:inline-flex;flex-direction:column;align-items:center;margin-top:34px;
-    padding:20px 40px;border:1px solid var(--line);border-radius:999px;background:var(--card);
+    display:flex;flex-direction:column;align-items:center;margin:34px auto 0;max-width:340px;
+    padding:30px 26px 28px;border:1px solid var(--line);border-radius:22px;background:var(--card);
+    position:relative;
+  }
+  .invite-time::after{
+    content:'';position:absolute;inset:10px;border:1px solid var(--line);border-radius:14px;pointer-events:none;
   }
   .invite-time b{font-family:var(--serif);font-weight:400;font-size:2rem;line-height:1.1}
   .invite-time span{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
@@ -123,13 +140,13 @@
   /* ============ PLAN DNIA ============ */
   .timeline{position:relative;width:fit-content;max-width:100%;margin:10px auto 0;text-align:left}
   .timeline::before{
-    content:'';position:absolute;left:5px;top:12px;bottom:14px;width:1px;
+    content:'';position:absolute;left:5px;top:var(--c,.825rem);bottom:14px;width:1px;
     background:repeating-linear-gradient(var(--rose-soft) 0 4px,transparent 4px 9px);
   }
   .t-item{position:relative;padding-left:46px;margin-bottom:34px}
   .t-item:last-child{margin-bottom:0}
   .t-item::before{
-    content:'';position:absolute;left:0;top:6px;width:11px;height:11px;border-radius:50%;
+    content:'';position:absolute;left:0;top:calc(var(--c,.825rem) - 5.5px);width:11px;height:11px;border-radius:50%;
     background:var(--paper);border:1px solid var(--muted);transition:all .6s;
   }
   .t-item.done::before{background:var(--rose-soft);border-color:var(--rose)}
@@ -143,7 +160,7 @@
     font-family:var(--serif);font-style:italic;font-size:1.7rem;color:var(--ink);text-align:center;z-index:3;
   }
   .t-heart{
-    position:absolute;left:-5.5px;top:0;width:22px;height:22px;z-index:2;pointer-events:none;
+    position:absolute;left:-5.25px;top:0;width:22px;height:22px;z-index:2;pointer-events:none;
     transition:top 1.2s ease;filter:drop-shadow(0 2px 4px rgba(176,116,95,.35));
   }
   .t-heart path{fill:var(--rose);stroke:var(--paper);stroke-width:1.4;paint-order:stroke;
@@ -158,7 +175,7 @@
   .album::after{
     content:'';position:absolute;inset:10px;border:1px solid var(--line);border-radius:14px;pointer-events:none;
   }
-  .album p{max-width:430px;margin:0 auto 30px;color:#5a4f48}
+  .album p{text-wrap:pretty;max-width:430px;margin:0 auto 30px;color:#5a4f48}
   .cam{width:46px;height:46px;margin:0 auto 6px;stroke:var(--rose);fill:none;stroke-width:1.1}
 
   .btn{
@@ -204,7 +221,7 @@
   }
   @media (prefers-reduced-motion:reduce){
     *,*::before,*::after{animation:none!important;transition:none!important}
-    .hero-inner,.reveal{opacity:1;transform:none}
+    .hero-inner,.r{opacity:1!important;transform:none!important;filter:none!important}
     .sprig path{stroke-dashoffset:0}
   }
 </style>
@@ -242,7 +259,7 @@
   <section id="zaproszenie" class="reveal">
     <div class="eyebrow">Zaproszenie</div>
     <h2>Bądźcie z nami</h2>
-    <p class="lead">Z ogromną radością zapraszamy Was do wspólnego świętowania tego wyjątkowego dnia.</p>
+    <p class="lead">Z&nbsp;ogromną radością zapraszamy Was do&nbsp;wspólnego świętowania tego wyjątkowego&nbsp;dnia.</p>
     <div class="invite-time">
       <span>Ceremonia</span>
       <b>godz. 16:00</b>
@@ -251,7 +268,7 @@
 
   <section class="reveal">
     <div class="eyebrow">Harmonogram</div>
-    <h2>Plan dnia</h2>
+    <h2>Przebieg uroczystości</h2>
     <div class="timeline" id="timeline">
       <svg class="t-heart" id="t-heart" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
@@ -261,7 +278,7 @@
       <div class="t-item blur" aria-hidden="true" data-time="17:00"><span class="t-time">17:00</span><span class="t-label">Uroczysty obiad</span></div>
       <div class="t-item blur" aria-hidden="true" data-time="20:00"><span class="t-time">20:00</span><span class="t-label">Pierwszy taniec</span></div>
       <div class="t-item blur" aria-hidden="true" data-time="22:00"><span class="t-time">22:00</span><span class="t-label">Tort weselny</span></div>
-      <div class="t-soon" id="t-soon"><span style="white-space:nowrap;padding:40px 70px;background:radial-gradient(closest-side,#fefdfc 30%,rgba(253,252,249,.88) 60%,rgba(251,249,245,0) 100%)">Plan dnia już wkrótce</span></div>
+      <div class="t-soon" id="t-soon"><span style="white-space:nowrap;padding:40px 70px;background:radial-gradient(closest-side,#fefdfc 30%,rgba(253,252,249,.88) 60%,rgba(251,249,245,0) 100%)">Szczegóły już wkrótce</span></div>
     </div>
   </section>
 
@@ -275,7 +292,7 @@
       </svg>
       <div class="eyebrow">Wspólne wspomnienia</div>
       <h2>Weselny album</h2>
-      <p>Złapaliście piękną chwilę? Zróbcie zdjęcie, nagrajcie film albo wybierzcie pliki z galerii — trafią prosto do naszego albumu.</p>
+      <p>Złapaliście piękną chwilę? Zróbcie zdjęcie, nagrajcie film albo wybierzcie pliki z&nbsp;galerii&nbsp;— trafią prosto do&nbsp;naszego albumu.</p>
 
       <input type="file" id="file-input" accept="image/*,video/*" multiple>
       <button type="button" class="btn" id="upload-btn">Dodaj zdjęcia i filmy</button>
@@ -332,7 +349,20 @@
     const heart = document.getElementById('t-heart');
     const items = [...timeline.querySelectorAll('.t-item:not(.blur)')];
     const times = items.map(el => { const [h,m] = el.dataset.time.split(':').map(Number); return h*60+m; });
-    const HEART = 22, DOT_CENTER = 6 + 5.5;
+    const HEART = 22;
+    const OPTICAL = 1; // serce ma „ciężar” w górnej części – 1 px w dół, żeby optycznie siedziało na środku cyfr
+    // środek faktycznie narysowanych cyfr „16:00” (czcionka ma cyfry nautyczne, więc środek linii ≠ środek cyfr)
+    const ctx = document.createElement('canvas').getContext('2d');
+    function glyphCenter(t){
+      const cs = getComputedStyle(t);
+      ctx.font = cs.fontStyle + ' ' + cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
+      const m = ctx.measureText(t.textContent.trim());
+      if (!m.fontBoundingBoxAscent || !m.actualBoundingBoxAscent) return t.offsetHeight / 2;
+      const lh = t.offsetHeight;
+      const baseline = (lh - (m.fontBoundingBoxAscent + m.fontBoundingBoxDescent)) / 2 + m.fontBoundingBoxAscent;
+      return baseline - (m.actualBoundingBoxAscent - m.actualBoundingBoxDescent) / 2;
+    }
+    const centerOf = el => { const t = el.querySelector('.t-time'); return el.offsetTop + t.offsetTop + glyphCenter(t); };
 
     function minutesNow(){
       const test = new URLSearchParams(location.search).get('godzina');
@@ -354,15 +384,17 @@
     }
     function place(instant){
       placeSoon();
+      const first = timeline.querySelector('.t-item .t-time');
+      if (first) timeline.style.setProperty('--c', (first.offsetTop + glyphCenter(first)) + 'px');
       const t = minutesNow();
-      const ys = items.map(el => el.offsetTop + DOT_CENTER);
+      const ys = items.map(centerOf);
       const last = times.length - 1;
       let y;
       if (t <= times[0]) y = ys[0];
       else if (t >= times[last]) y = ys[last];
       else { let i = 0; while (t >= times[i+1]) i++; const f = (t-times[i])/(times[i+1]-times[i]); y = ys[i] + f*(ys[i+1]-ys[i]); }
       if (instant) heart.style.transition = 'none';
-      heart.style.top = (y - HEART/2) + 'px';
+      heart.style.top = (y - HEART/2 + OPTICAL) + 'px';
       if (instant){ heart.getBoundingClientRect(); heart.style.transition = ''; }
       items.forEach((el,i) => el.classList.toggle('done', t >= times[i]));
     }
@@ -373,13 +405,34 @@
     setInterval(() => place(false), 30000);
   })();
 
-  // ====== POJAWIANIE SIĘ SEKCJI ======
+  // ====== POJAWIANIE SIĘ SEKCJI (w obie strony) ======
   (function(){
     const els = document.querySelectorAll('.reveal');
+    els.forEach(sec => {
+      // kolejność pojawiania się elementów w sekcji
+      const parts = [];
+      [...sec.children].forEach(ch => {
+        if (ch.classList.contains('timeline')) parts.push(...ch.querySelectorAll('.t-item, .t-soon'));
+        else if (ch.classList.contains('album')) parts.push(...[...ch.children].filter(c => c.id !== 'file-input'));
+        else parts.push(ch);
+      });
+      parts.forEach((el, i) => {
+        el.classList.add('r');
+        if (!el.classList.contains('t-item')) el.classList.add('soft');
+        el.style.setProperty('--i', i);
+      });
+      const heart = sec.querySelector('.t-heart');
+      if (heart){ heart.classList.add('r'); heart.style.setProperty('--i', 1); }
+    });
     if (!('IntersectionObserver' in window)){ els.forEach(e => e.classList.add('in')); return; }
     const io = new IntersectionObserver(entries => entries.forEach(e => {
-      if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-    }), { threshold: .15 });
+      if (e.isIntersecting){
+        e.target.classList.add('in');
+      } else {
+        e.target.classList.remove('in');
+        e.target.classList.toggle('from-top', e.boundingClientRect.top < 0);
+      }
+    }), { threshold: .12, rootMargin: '0px 0px -8% 0px' });
     els.forEach(e => io.observe(e));
   })();
 
