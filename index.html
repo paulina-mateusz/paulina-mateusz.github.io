@@ -243,6 +243,24 @@
   .map-card svg{display:block;width:100%;height:auto}
   .map-card .place{cursor:pointer;outline:none;transition:opacity .3s}
   .map-card .place:hover,.map-card .place:focus-visible{opacity:.8}
+  /* animacja dłoni „stukającej” w kościół i salę */
+  .tap-hand{opacity:0;transform-box:view-box;transform-origin:0 0;pointer-events:none}
+  #dojazd.in .tap-hand{animation:tap-hand 5.2s cubic-bezier(.45,0,.25,1) 1s 1 both}
+  @keyframes tap-hand{
+    0%  {opacity:0;transform:translate(380px,500px) scale(1.5)}
+    12% {opacity:1;transform:translate(300px,400px) scale(1.5)}
+    18% {transform:translate(300px,400px) scale(1.3)}
+    24% {transform:translate(300px,400px) scale(1.5)}
+    50% {transform:translate(880px,808px) scale(1.5)}
+    56% {transform:translate(880px,808px) scale(1.3)}
+    62% {opacity:1;transform:translate(880px,808px) scale(1.5)}
+    76% {opacity:0;transform:translate(950px,880px) scale(1.5)}
+    100%{opacity:0;transform:translate(950px,880px) scale(1.5)}
+  }
+  .tap-ring{fill:none;stroke:var(--rose);stroke-width:4;opacity:0;transform-box:fill-box;transform-origin:center;pointer-events:none}
+  #dojazd.in .tap-ring{animation:tap-ring .9s ease-out 1.95s 1 both}
+  #dojazd.in .tap-ring.r2{animation-delay:3.9s}
+  @keyframes tap-ring{0%{opacity:.8;transform:scale(.2)}100%{opacity:0;transform:scale(1.6)}}
   .map-hint{margin-top:16px;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--muted);text-wrap:pretty}
   .nav-bg{position:fixed;inset:0;z-index:60;background:rgba(43,36,32,.18);opacity:0;pointer-events:none;transition:opacity .35s ease}
   .nav-sheet{position:fixed;left:50%;bottom:0;z-index:61;width:min(420px,100%);box-sizing:border-box;text-align:center;
@@ -450,6 +468,12 @@
   <text x="880" y="994" text-anchor="middle" class="mt" font-style="italic" font-size="30" fill="#7d7067">ul.&#160;Długa&#160;113</text>
 </g>
 
+<circle class="tap-ring" cx="300" cy="400" r="70"/><circle class="tap-ring r2" cx="880" cy="808" r="70"/>
+<g class="tap-hand"><g transform="rotate(-18)">
+  <path d="M-8 6 a8 8 0 0 1 16 0 v34 a7.5 7.5 0 0 1 15 1 v3 a7.5 7.5 0 0 1 15 1 v3 a7 7 0 0 1 14 1 v24 c0 20 -12 34 -32 34 h-8 c-14 0 -22 -7 -28 -17 l-14 -24 a7 7 0 0 1 11 -8 l11 11 z"
+        fill="#fefdfb" stroke="#2b2420" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M7 41 v14 M22 46 v12 M37 50 v10" stroke="#2b2420" stroke-width="2" stroke-linecap="round" fill="none" opacity=".55"/>
+</g></g>
 </svg>
     </div>
     <p class="map-hint">Dotknij kościoła lub sali, aby otworzyć nawigację.</p>
