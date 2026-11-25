@@ -237,6 +237,27 @@
   @media (hover:none){.lb-prev,.lb-next{display:none}} /* na telefonie przesuwanie palcem */
   .lb-count{position:absolute;bottom:22px;left:0;right:0;text-align:center;font-size:.66rem;letter-spacing:.3em;color:var(--muted)}
 
+  /* ============ DOJAZD ============ */
+  .map-card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:14px;position:relative;overflow:hidden}
+  .map-card::after{content:'';position:absolute;inset:10px;border:1px solid var(--line);border-radius:14px;pointer-events:none}
+  .map-card svg{display:block;width:100%;height:auto}
+  .map-card .place{cursor:pointer;outline:none;transition:opacity .3s}
+  .map-card .place:hover,.map-card .place:focus-visible{opacity:.8}
+  .map-hint{margin-top:16px;font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--muted);text-wrap:pretty}
+  .nav-bg{position:fixed;inset:0;z-index:60;background:rgba(43,36,32,.18);opacity:0;pointer-events:none;transition:opacity .35s ease}
+  .nav-sheet{position:fixed;left:50%;bottom:0;z-index:61;width:min(420px,100%);box-sizing:border-box;text-align:center;
+    transform:translate(-50%,105%);transition:transform .5s cubic-bezier(.16,1,.3,1);
+    background:var(--card);border:1px solid var(--line);border-bottom:0;border-radius:22px 22px 0 0;
+    padding:26px 22px calc(20px + env(safe-area-inset-bottom))}
+  .nav-open .nav-bg{opacity:1;pointer-events:auto}
+  .nav-open .nav-sheet{transform:translate(-50%,0)}
+  .nav-sheet h3{margin:8px 0 4px;font-family:var(--serif);font-weight:400;font-style:italic;font-size:1.7rem;color:var(--ink)}
+  .nav-sheet p{white-space:pre-line;margin:0 0 18px;font-family:var(--serif);font-size:1.08rem;color:var(--muted)}
+  .nav-sheet a,.nav-sheet button{display:block;width:100%;box-sizing:border-box;margin:8px 0;padding:15px;border-radius:999px;
+    text-decoration:none;cursor:pointer;font-family:var(--sans);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase}
+  .nav-sheet a{background:var(--ink);color:var(--paper);border:0}
+  .nav-sheet button{background:none;border:1px solid var(--line);color:var(--muted)}
+
   /* ============ STOPKA ============ */
   footer{text-align:center;padding:60px 20px 70px}
   footer .sig{font-family:var(--script);font-size:2.6rem;color:var(--rose);line-height:1}
@@ -330,6 +351,110 @@
     </div>
   </section>
 
+  <section class="reveal" id="dojazd">
+    <div class="eyebrow">Dojazd</div>
+    <h2>Jak do nas trafić</h2>
+    <div class="map-card">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="64 236 1072 840" role="img" aria-label="Mapa dojazdu z kościoła w Garwolinie do sali weselnej w Górznie">
+<style>.mt{font-family:'Cormorant Garamond',Georgia,serif}.mj{font-family:'Jost',sans-serif;text-transform:uppercase}</style>
+
+
+<!-- tło -->
+<path d="M720 250 C 820 300, 900 280, 980 330 S 1080 460, 1136 470" fill="none" stroke="#c8d5d2" stroke-width="14" stroke-linecap="round" opacity=".7"/>
+<path d="M64 1010 C 160 960, 260 970, 360 1000 S 520 980, 640 1010 S 900 1060, 1136 1020 V1136 H64 Z" fill="#8b9a80" fill-opacity=".08"/>
+<path d="M64 1010 C 160 960, 260 970, 360 1000 S 520 980, 640 1010 S 900 1060, 1136 1020" fill="none" stroke="#8b9a80" stroke-opacity=".45" stroke-width="2"/>
+<path d="M110 430 C 160 450, 190 470, 210 470" fill="none" stroke="#ddd3c7" stroke-width="4" stroke-linecap="round"/>
+<path d="M210 470 C 160 520, 120 560, 90 600" fill="none" stroke="#ddd3c7" stroke-width="4" stroke-linecap="round"/>
+<path d="M560 600 C 640 540, 700 470, 760 450" fill="none" stroke="#ddd3c7" stroke-width="4" stroke-linecap="round"/>
+<path d="M1004 860 C 1060 840, 1100 800, 1130 760" fill="none" stroke="#ddd3c7" stroke-width="4" stroke-linecap="round"/>
+<path d="M700 712 C 640 800, 620 900, 640 1008" fill="none" stroke="#ddd3c7" stroke-width="4" stroke-linecap="round"/>
+
+<path transform="translate(930,170) scale(0.8)" d="M0 20 h90 a18 18 0 0 0 -8 -34 a26 26 0 0 0 -48 -6 a20 20 0 0 0 -34 20 a14 14 0 0 0 0 20 z" fill="#fefdfb" stroke="#e2d6c8" stroke-width="2.2" stroke-linejoin="round"/><path transform="translate(110,282) scale(0.6)" d="M0 20 h90 a18 18 0 0 0 -8 -34 a26 26 0 0 0 -48 -6 a20 20 0 0 0 -34 20 a14 14 0 0 0 0 20 z" fill="#fefdfb" stroke="#e2d6c8" stroke-width="2.2" stroke-linejoin="round"/><path transform="translate(470,860) scale(0.65)" d="M0 20 h90 a18 18 0 0 0 -8 -34 a26 26 0 0 0 -48 -6 a20 20 0 0 0 -34 20 a14 14 0 0 0 0 20 z" fill="#fefdfb" stroke="#e2d6c8" stroke-width="2.2" stroke-linejoin="round"/>
+<g transform="translate(480,380) scale(0.9)">
+  <line x1="0" y1="0" x2="0" y2="-22" stroke="#8b9a80" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="0" cy="-34" r="15" fill="#8b9a80" fill-opacity=".22" stroke="#8b9a80" stroke-width="2"/></g><g transform="translate(515,395) scale(0.75)">
+  <path d="M0 -46 L14 -12 L-14 -12 Z M0 -32 L17 0 L-17 0 Z" fill="#8b9a80" fill-opacity=".2" stroke="#8b9a80" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="0" y1="0" x2="0" y2="8" stroke="#8b9a80" stroke-width="2.2" stroke-linecap="round"/></g><g transform="translate(760,560) scale(0.85)">
+  <line x1="0" y1="0" x2="0" y2="-22" stroke="#8b9a80" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="0" cy="-34" r="15" fill="#8b9a80" fill-opacity=".22" stroke="#8b9a80" stroke-width="2"/></g><g transform="translate(795,575) scale(0.75)">
+  <path d="M0 -46 L14 -12 L-14 -12 Z M0 -32 L17 0 L-17 0 Z" fill="#8b9a80" fill-opacity=".2" stroke="#8b9a80" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="0" y1="0" x2="0" y2="8" stroke="#8b9a80" stroke-width="2.2" stroke-linecap="round"/></g><g transform="translate(1060,640) scale(0.9)">
+  <line x1="0" y1="0" x2="0" y2="-22" stroke="#8b9a80" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="0" cy="-34" r="15" fill="#8b9a80" fill-opacity=".22" stroke="#8b9a80" stroke-width="2"/></g><g transform="translate(1095,660) scale(0.8)">
+  <path d="M0 -46 L14 -12 L-14 -12 Z M0 -32 L17 0 L-17 0 Z" fill="#8b9a80" fill-opacity=".2" stroke="#8b9a80" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="0" y1="0" x2="0" y2="8" stroke="#8b9a80" stroke-width="2.2" stroke-linecap="round"/></g>
+<g transform="translate(130,800) scale(0.9)">
+  <path d="M0 -46 L14 -12 L-14 -12 Z M0 -32 L17 0 L-17 0 Z" fill="#8b9a80" fill-opacity=".2" stroke="#8b9a80" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="0" y1="0" x2="0" y2="8" stroke="#8b9a80" stroke-width="2.2" stroke-linecap="round"/></g><g transform="translate(165,815) scale(0.8)">
+  <line x1="0" y1="0" x2="0" y2="-22" stroke="#8b9a80" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="0" cy="-34" r="15" fill="#8b9a80" fill-opacity=".22" stroke="#8b9a80" stroke-width="2"/></g><g transform="translate(1050,1036) scale(0.85)">
+  <line x1="0" y1="0" x2="0" y2="-22" stroke="#8b9a80" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="0" cy="-34" r="15" fill="#8b9a80" fill-opacity=".22" stroke="#8b9a80" stroke-width="2"/></g><g transform="translate(1090,1040) scale(0.8)">
+  <path d="M0 -46 L14 -12 L-14 -12 Z M0 -32 L17 0 L-17 0 Z" fill="#8b9a80" fill-opacity=".2" stroke="#8b9a80" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="0" y1="0" x2="0" y2="8" stroke="#8b9a80" stroke-width="2.2" stroke-linecap="round"/></g><g transform="translate(250,995) scale(0.75)">
+  <path d="M0 -46 L14 -12 L-14 -12 Z M0 -32 L17 0 L-17 0 Z" fill="#8b9a80" fill-opacity=".2" stroke="#8b9a80" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="0" y1="0" x2="0" y2="8" stroke="#8b9a80" stroke-width="2.2" stroke-linecap="round"/></g><g transform="translate(450,998) scale(0.8)">
+  <line x1="0" y1="0" x2="0" y2="-22" stroke="#8b9a80" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="0" cy="-34" r="15" fill="#8b9a80" fill-opacity=".22" stroke="#8b9a80" stroke-width="2"/></g><g transform="translate(560,1012) scale(0.7)">
+  <path d="M0 -46 L14 -12 L-14 -12 Z M0 -32 L17 0 L-17 0 Z" fill="#8b9a80" fill-opacity=".2" stroke="#8b9a80" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="0" y1="0" x2="0" y2="8" stroke="#8b9a80" stroke-width="2.2" stroke-linecap="round"/></g>
+<g transform="translate(640,380) scale(0.7)">
+  <line x1="0" y1="0" x2="0" y2="-22" stroke="#8b9a80" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="0" cy="-34" r="15" fill="#8b9a80" fill-opacity=".22" stroke="#8b9a80" stroke-width="2"/></g>
+
+<path d="M396 466 C 500 470, 520 540, 560 600 S 640 690, 700 712 S 770 790, 756 842" fill="none" stroke="#d9b3a3" stroke-width="16" stroke-linecap="round" opacity=".35"/>
+<path d="M396 466 C 500 470, 520 540, 560 600 S 640 690, 700 712 S 770 790, 756 842" fill="none" stroke="#b0745f" stroke-width="7" stroke-linecap="round" stroke-dasharray="0 17"/>
+<g transform="translate(600,652) rotate(30) scale(-1,1)">
+  <path d="M-30 6 V-6 q0 -6 6 -7 l10 -2 l8 -10 q3 -3 7 -3 h14 q5 0 8 4 l7 9 q8 1 8 8 v7 z" fill="#fefdfb" stroke="#2b2420" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M-4 -14 l6 -8 h10 l6 8 z" fill="#fbf9f5" stroke="#2b2420" stroke-width="1.8" stroke-linejoin="round"/>
+  <circle cx="-16" cy="8" r="6" fill="#fefdfb" stroke="#2b2420" stroke-width="2.4"/><circle cx="20" cy="8" r="6" fill="#fefdfb" stroke="#2b2420" stroke-width="2.4"/>
+  <circle cx="42" cy="3" r="3.5" fill="none" stroke="#d9b3a3" stroke-width="1.6"/>
+  <circle cx="51" cy="-2" r="2.5" fill="none" stroke="#d9b3a3" stroke-width="1.4"/>
+  <circle cx="58" cy="-7" r="1.8" fill="none" stroke="#d9b3a3" stroke-width="1.2"/>
+</g><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#b0745f" opacity="1" transform="translate(577.0,597.0) scale(0.75)"/>
+<g transform="translate(176,360)" fill="none" stroke="#b0745f" stroke-width="2.4"><circle cx="-9" cy="0" r="12"/><circle cx="9" cy="0" r="12"/></g><g transform="translate(880,700)" stroke="#b0745f" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <g transform="rotate(-14)"><path d="M-22 -26 h16 l-2 14 a6 6 0 0 1 -12 0 z" fill="#d9b3a3" fill-opacity=".5"/><line x1="-14" y1="-6" x2="-14" y2="8"/><line x1="-20" y1="8" x2="-8" y2="8"/></g>
+  <g transform="rotate(14)"><path d="M6 -26 h16 l-2 14 a6 6 0 0 1 -12 0 z" fill="#d9b3a3" fill-opacity=".5"/><line x1="14" y1="-6" x2="14" y2="8"/><line x1="8" y1="8" x2="20" y2="8"/></g>
+</g>
+<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#b0745f" opacity="1" transform="translate(385.0,455.0) scale(0.9166666666666666)"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#b0745f" opacity="1" transform="translate(745.0,831.0) scale(0.9166666666666666)"/>
+
+<g class="place" data-place="kosciol" tabindex="0" role="button">
+  <rect x="180" y="270" width="250" height="370" fill="transparent" stroke="none"/>
+  <g transform="translate(300,470)" stroke="#2b2420" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" fill="#fefdfb">
+  <path d="M-62 0 V-58 L-20 -96 L22 -58 V0 Z"/>
+  <path d="M22 0 V-112 L44 -140 L66 -112 V0 Z"/>
+  <line x1="44" y1="-140" x2="44" y2="-170"/><line x1="33" y1="-158" x2="55" y2="-158"/>
+  <path d="M-34 0 V-30 a14 14 0 0 1 28 0 V0" fill="#fbf9f5"/>
+  <path d="M36 -80 a8 8 0 0 1 16 0 V-62 H36 Z" fill="#fbf9f5"/>
+  <circle cx="-20" cy="-70" r="8" fill="#fbf9f5"/>
+  <line x1="-90" y1="0" x2="96" y2="0"/>
+</g>
+  <text x="300" y="530" text-anchor="middle" class="mj" font-size="25" letter-spacing="6" fill="#b0745f">Ceremonia</text>
+  <text x="300" y="578" text-anchor="middle" class="mt" font-weight="500" font-size="46" fill="#2b2420">godz. 16:00</text>
+  <text x="300" y="620" text-anchor="middle" class="mt" font-style="italic" font-size="36" fill="#7d7067">Garwolin</text>
+  <text x="300" y="658" text-anchor="middle" class="mt" font-style="italic" font-size="30" fill="#7d7067">ul.&#160;Żołnierzy II&#160;Armii WP&#160;10</text>
+</g>
+<g class="place" data-place="sala" tabindex="0" role="button">
+  <rect x="750" y="730" width="260" height="240" fill="transparent" stroke="none"/>
+  <g transform="translate(880,860)" stroke="#2b2420" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round" fill="#fefdfb">
+  <path d="M-96 0 V-62 H96 V0 Z"/>
+  <path d="M-108 -62 L0 -112 L108 -62 Z"/>
+  <path d="M-30 -62 L0 -84 L30 -62" fill="none"/>
+  <path d="M-14 0 V-30 a14 14 0 0 1 28 0 V0" fill="#fbf9f5"/>
+  <rect x="-74" y="-46" width="20" height="26" rx="3" fill="#fbf9f5"/><rect x="-46" y="-46" width="20" height="26" rx="3" fill="#fbf9f5"/>
+  <rect x="26" y="-46" width="20" height="26" rx="3" fill="#fbf9f5"/><rect x="54" y="-46" width="20" height="26" rx="3" fill="#fbf9f5"/>
+  <line x1="-124" y1="0" x2="124" y2="0"/>
+</g><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#b0745f" opacity="0.9" transform="translate(873.0,815.0) scale(0.5833333333333334)"/>
+  <text x="880" y="912" text-anchor="middle" class="mj" font-size="25" letter-spacing="6" fill="#b0745f">Przyjęcie</text>
+  <text x="880" y="956" text-anchor="middle" class="mt" font-style="italic" font-size="36" fill="#7d7067">Górzno</text>
+  <text x="880" y="994" text-anchor="middle" class="mt" font-style="italic" font-size="30" fill="#7d7067">ul.&#160;Długa&#160;113</text>
+</g>
+
+</svg>
+    </div>
+    <p class="map-hint">Dotknij kościoła lub sali, aby otworzyć nawigację.</p>
+  </section>
+
   <section class="reveal" id="galeria" hidden>
     <div class="eyebrow">Oczami gości</div>
     <h2>Wasze kadry</h2>
@@ -344,6 +469,19 @@
   <button class="lb-next" id="lb-next" aria-label="Następne">›</button>
   <button class="lb-close" id="lb-close" aria-label="Zamknij">×</button>
   <div class="lb-count" id="lb-count"></div>
+</div>
+
+<div id="nav">
+  <div class="nav-bg" id="nav-bg"></div>
+  <div class="nav-sheet" role="dialog" aria-modal="true" aria-labelledby="nav-t">
+    <div class="eyebrow" id="nav-e"></div>
+    <h3 id="nav-t"></h3>
+    <p id="nav-a"></p>
+    <a id="nav-google" target="_blank" rel="noopener">Google Maps</a>
+    <a id="nav-apple" target="_blank" rel="noopener">Apple Mapy</a>
+    <a id="nav-waze" target="_blank" rel="noopener">Waze</a>
+    <button type="button" id="nav-x">Anuluj</button>
+  </div>
 </div>
 
 <footer>
@@ -635,6 +773,38 @@
 
     load();
     setInterval(load, 45000);
+  })();
+
+  // ====== DOJAZD – WYBÓR NAWIGACJI ======
+  (function(){
+    const PLACES = {
+      kosciol: { e: 'Ceremonia · godz. 16:00', t: 'Kościół w\u00a0Garwolinie',
+                 a: 'Żołnierzy II Armii Wojska Polskiego 10, 08-400 Garwolin',
+                 d: 'ul.\u00a0Żołnierzy II\u00a0Armii Wojska Polskiego\u00a010\n08-400\u00a0Garwolin' },
+      sala:    { e: 'Przyjęcie', t: 'Sala weselna w\u00a0Górznie',
+                 a: 'Długa 113, 08-404 Górzno',
+                 d: 'ul.\u00a0Długa\u00a0113\n08-404\u00a0Górzno' }
+    };
+    const nav = document.getElementById('nav'), $ = id => document.getElementById(id);
+    const sheet = nav.querySelector('.nav-sheet');
+    const isApple = /iPhone|iPad|Macintosh/.test(navigator.userAgent) && 'ontouchend' in document;
+    if (isApple) sheet.insertBefore($('nav-apple'), $('nav-google'));
+    function open(key){
+      const p = PLACES[key], q = encodeURIComponent(p.a);
+      $('nav-e').textContent = p.e; $('nav-t').textContent = p.t; $('nav-a').textContent = p.d;
+      $('nav-google').href = 'https://www.google.com/maps/dir/?api=1&destination=' + q;
+      $('nav-apple').href  = 'https://maps.apple.com/?daddr=' + q;
+      $('nav-waze').href   = 'https://waze.com/ul?q=' + q + '&navigate=yes';
+      document.body.classList.add('nav-open');
+    }
+    const close = () => document.body.classList.remove('nav-open');
+    document.querySelectorAll('#dojazd .place').forEach(g => {
+      g.addEventListener('click', () => open(g.dataset.place));
+      g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(g.dataset.place); } });
+    });
+    $('nav-bg').onclick = close; $('nav-x').onclick = close;
+    sheet.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setTimeout(close, 300)));
+    addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
   })();
 </script>
 </body>
